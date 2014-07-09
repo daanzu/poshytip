@@ -335,8 +335,8 @@
 				win = {
 					l: $win.scrollLeft(),
 					t: $win.scrollTop(),
-					w: $win.width(),
-					h: $win.height()
+					w: Math.min($win.width(), window.innerWidth),
+					h: Math.min($win.height(), window.innerHeight)
 				}, xL, xC, xR, yT, yC, yB;
 			if (this.opts.alignTo == 'cursor') {
 				xL = xC = xR = this.eventX;
@@ -372,7 +372,7 @@
 					if (this.opts.keepInViewport) {
 						if (pos.l + this.tipOuterW > win.l + win.w)
 							pos.l = win.l + win.w - this.tipOuterW;
-						else if (pos.l < win.l)
+						if (pos.l < win.l)
 							pos.l = win.l;
 					}
 					break;
@@ -401,7 +401,7 @@
 					if (this.opts.keepInViewport) {
 						if (pos.t + this.tipOuterH > win.t + win.h)
 							pos.t = win.t + win.h - this.tipOuterH;
-						else if (pos.t < win.t)
+						if (pos.t < win.t)
 							pos.t = win.t;
 					}
 					break;
